@@ -8,39 +8,43 @@
 import UIKit
 import YandexMapsMobile
 
-class ViewController: UIViewController {
+protocol ViewDelegate: AnyObject {
+    func receiveView(view: UIView)
+}
 
-    lazy var mapView = YMKMapView(frame: CGRect(x: view.frame.minX, y: view.safeAreaLayoutGuide.layoutFrame.minY, width: view.frame.width, height: view.safeAreaLayoutGuide.layoutFrame.height), vulkanPreferred: true)
+class ViewController: UIViewController {
+  
+    lazy var mapView: YMKMapView = MapView().mapView
     
+    // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        addMapView()
+        view.addSubview(mapView)
+        setupMapViewConstraints()
+        mapView.mapWindow.map.addInputListener(with: self)
     }
     
-    func addMapView() {
-        mapView!.mapWindow.map.move(
-            with: YMKCameraPosition(
-                target: YMKPoint(latitude: 59.935493, longitude: 30.327392),
-                zoom: 15,
-                azimuth: 0,
-                tilt: 0
-            ),
-            animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 5),
-            cameraCallback: nil)
+    private func setupMapViewConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(mapView!)
-        mapView?.mapWindow.map.addInputListener(with: self)
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mapView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
+            mapView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
     }
     
-    func addPlacemarkOnMap(latitude: Double, longitude: Double) {
-       // Задание координат точки
+    private func addPlacemarkOnMap(latitude: Double, longitude: Double) {
+       
         let point = YMKPoint(latitude: latitude, longitude: longitude)
-        let viewPlacemark: YMKPlacemarkMapObject = (mapView?.mapWindow.map.mapObjects.addPlacemark(/*with: point*/))!
+        let viewPlacemark: YMKPlacemarkMapObject = (mapView.mapWindow.map.mapObjects.addPlacemark())
         viewPlacemark.geometry = point
-      // Настройка и добавление иконки
-        let pinImage = UIImage(systemName: "mappin.circle.fill")?.withTintColor(.systemRed)
+      
+        let pinImage = UIImage(systemName: "mappin.circle.fill")
+
         viewPlacemark.setIconWith(
-            pinImage!, // Убедитесь, что у вас есть иконка для точки
+            pinImage!,
             style: YMKIconStyle(
                 anchor: CGPoint(x: 0.5, y: 0.5) as NSValue,
                 rotationType: YMKRotationType.rotate.rawValue as NSNumber,
@@ -53,7 +57,7 @@ class ViewController: UIViewController {
         )
         viewPlacemark.setTextWithText("My pin", style: YMKTextStyle(
             size: 10.0,
-            color: .black, 
+            color: .black,
             outlineWidth: 5.0,
             outlineColor: .white,
             placement: .bottom,
@@ -64,20 +68,30 @@ class ViewController: UIViewController {
 
         viewPlacemark.addTapListener(with: self)
     }
-
-
 }
 
 extension ViewController: YMKMapInputListener {
     func onMapTap(with map: YMKMap, point: YMKPoint) {
-        
-        addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude)
+        createPin(on: point)
     }
     
     func onMapLongTap(with map: YMKMap, point: YMKPoint) {
-        addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude)
+        createPin(on: point)
     }
     
+    private func createPin(on point: YMKPoint) {
+        let okButton = UIAlertAction(title: "Create", style: .default) { action in
+            self.addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        AlertPresenter.present(
+            from: self,
+            with: "Create new point?",
+            message: "\((point.latitude, point.longitude))",
+            actions: [okButton, cancelButton],
+            style: .actionSheet
+        )
+    }
     
 }
 
@@ -91,7 +105,7 @@ extension ViewController: YMKMapObjectTapListener {
         self.focusOnPlacemark(placemark)
         
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { action in
-            self.mapView?.mapWindow.map.mapObjects.remove(with: placemark)
+            self.mapView.mapWindow.map.mapObjects.remove(with: placemark)
         }
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         let editButton = UIAlertAction(title: "Edit", style: .default) { action in
@@ -132,9 +146,9 @@ extension ViewController: YMKMapObjectTapListener {
         return true
     }
 
-    func focusOnPlacemark(_ placemark: YMKPlacemarkMapObject) {
-        mapView?.mapWindow.map.move(
-            with: YMKCameraPosition(target: placemark.geometry, zoom: 16, azimuth: 0, tilt: 0),
+    private func focusOnPlacemark(_ placemark: YMKPlacemarkMapObject) {
+        mapView.mapWindow.map.move(
+            with: YMKCameraPosition(target: placemark.geometry, zoom: 18, azimuth: 0, tilt: 0),
             animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 0.5),
             cameraCallback: nil
         )
@@ -142,3 +156,8 @@ extension ViewController: YMKMapObjectTapListener {
     
     
 }
+
+
+
+
+

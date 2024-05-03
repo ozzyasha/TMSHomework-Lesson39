@@ -8,16 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		7A36091A2BE39CCC0090CE68 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3609192BE39CCC0090CE68 /* AlertPresenter.swift */; };
+		7A395F242BE5052200888D76 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A395F232BE5052200888D76 /* MapView.swift */; };
 		7AFC8DCA2BE11D9E0068752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */; };
 		7AFC8DCC2BE11D9E0068752E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */; };
 		7AFC8DCE2BE11D9E0068752E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DCD2BE11D9E0068752E /* ViewController.swift */; };
 		7AFC8DD12BE11D9F0068752E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFC8DCF2BE11D9F0068752E /* Main.storyboard */; };
 		7AFC8DD32BE11DA00068752E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AFC8DD22BE11DA00068752E /* Assets.xcassets */; };
 		7AFC8DD62BE11DA00068752E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFC8DD42BE11DA00068752E /* LaunchScreen.storyboard */; };
+		B91C85CDE813393D06D10925 /* Pods_TMSHomework_Lesson39.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A458D5CF820FDAC075CBFC0 /* Pods_TMSHomework_Lesson39.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A458D5CF820FDAC075CBFC0 /* Pods_TMSHomework_Lesson39.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMSHomework_Lesson39.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35444FDA8DCF3A957C0F1A30 /* Pods-TMSHomework-Lesson39.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMSHomework-Lesson39.debug.xcconfig"; path = "Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3609192BE39CCC0090CE68 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		7A395F232BE5052200888D76 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		7AFC8DC62BE11D9E0068752E /* TMSHomework-Lesson39.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMSHomework-Lesson39.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		7AFC8DD22BE11DA00068752E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AFC8DD52BE11DA00068752E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AFC8DD72BE11DA00068752E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE243F3EA9BC0AB1F5CC8B7A /* Pods-TMSHomework-Lesson39.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMSHomework-Lesson39.release.xcconfig"; path = "Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91C85CDE813393D06D10925 /* Pods_TMSHomework_Lesson39.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 		683CF9C4C5B5CF97F621D2D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				35444FDA8DCF3A957C0F1A30 /* Pods-TMSHomework-Lesson39.debug.xcconfig */,
+				FE243F3EA9BC0AB1F5CC8B7A /* Pods-TMSHomework-Lesson39.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -60,6 +69,7 @@
 				7AFC8DC82BE11D9E0068752E /* TMSHomework-Lesson39 */,
 				7AFC8DC72BE11D9E0068752E /* Products */,
 				683CF9C4C5B5CF97F621D2D6 /* Pods */,
+				8DB0A357F28167144ACF8691 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +87,7 @@
 				7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */,
 				7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */,
 				7AFC8DCD2BE11D9E0068752E /* ViewController.swift */,
+				7A395F232BE5052200888D76 /* MapView.swift */,
 				7A3609182BE39CBB0090CE68 /* Utils */,
 				7AFC8DCF2BE11D9F0068752E /* Main.storyboard */,
 				7AFC8DD22BE11DA00068752E /* Assets.xcassets */,
@@ -86,6 +97,14 @@
 			path = "TMSHomework-Lesson39";
 			sourceTree = "<group>";
 		};
+		8DB0A357F28167144ACF8691 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A458D5CF820FDAC075CBFC0 /* Pods_TMSHomework_Lesson39.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -93,9 +112,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7AFC8DDA2BE11DA00068752E /* Build configuration list for PBXNativeTarget "TMSHomework-Lesson39" */;
 			buildPhases = (
+				8B730A6B817AC2E0A142716C /* [CP] Check Pods Manifest.lock */,
 				7AFC8DC22BE11D9E0068752E /* Sources */,
 				7AFC8DC32BE11D9E0068752E /* Frameworks */,
 				7AFC8DC42BE11D9E0068752E /* Resources */,
+				71C927892E6C29CA5B26B0B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +173,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		71C927892E6C29CA5B26B0B2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B730A6B817AC2E0A142716C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TMSHomework-Lesson39-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7AFC8DC22BE11D9E0068752E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -159,6 +222,7 @@
 			files = (
 				7AFC8DCE2BE11D9E0068752E /* ViewController.swift in Sources */,
 				7AFC8DCA2BE11D9E0068752E /* AppDelegate.swift in Sources */,
+				7A395F242BE5052200888D76 /* MapView.swift in Sources */,
 				7AFC8DCC2BE11D9E0068752E /* SceneDelegate.swift in Sources */,
 				7A36091A2BE39CCC0090CE68 /* AlertPresenter.swift in Sources */,
 			);
@@ -307,6 +371,7 @@
 		};
 		7AFC8DDB2BE11DA00068752E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35444FDA8DCF3A957C0F1A30 /* Pods-TMSHomework-Lesson39.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -335,6 +400,7 @@
 		};
 		7AFC8DDC2BE11DA00068752E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE243F3EA9BC0AB1F5CC8B7A /* Pods-TMSHomework-Lesson39.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
