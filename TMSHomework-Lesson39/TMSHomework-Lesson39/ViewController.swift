@@ -7,13 +7,15 @@
 
 import UIKit
 import YandexMapsMobile
+import Realm
+import RealmSwift
 
-protocol ViewDelegate: AnyObject {
-    func receiveView(view: UIView)
+protocol AlertDelegate: AnyObject {
+    func presentFailureAlert(_ message: String)
 }
 
 class ViewController: UIViewController {
-  
+    
     lazy var mapView: YMKMapView = MapView().mapView
     
     // MARK: - ViewController Lifecycle
@@ -22,6 +24,14 @@ class ViewController: UIViewController {
         view.addSubview(mapView)
         setupMapViewConstraints()
         mapView.mapWindow.map.addInputListener(with: self)
+        setupSavedPinsOnStart()
+    }
+    
+    private func setupSavedPinsOnStart() {
+        RealmManager.shared.readAllPointsFromDatabase()
+        RealmManager.shared.points.forEach { point in
+            addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude, text: point.text)
+        }
     }
     
     private func setupMapViewConstraints() {
@@ -35,14 +45,13 @@ class ViewController: UIViewController {
         ])
     }
     
-    private func addPlacemarkOnMap(latitude: Double, longitude: Double) {
-       
+    private func addPlacemarkOnMap(latitude: Double, longitude: Double, text: String) {
         let point = YMKPoint(latitude: latitude, longitude: longitude)
         let viewPlacemark: YMKPlacemarkMapObject = (mapView.mapWindow.map.mapObjects.addPlacemark())
         viewPlacemark.geometry = point
-      
+        
         let pinImage = UIImage(systemName: "mappin.circle.fill")
-
+        
         viewPlacemark.setIconWith(
             pinImage!,
             style: YMKIconStyle(
@@ -55,7 +64,7 @@ class ViewController: UIViewController {
                 tappableArea: nil
             )
         )
-        viewPlacemark.setTextWithText("My pin", style: YMKTextStyle(
+        viewPlacemark.setTextWithText(text, style: YMKTextStyle(
             size: 10.0,
             color: .black,
             outlineWidth: 5.0,
@@ -65,7 +74,7 @@ class ViewController: UIViewController {
             offsetFromIcon: true,
             textOptional: false
         ))
-
+        
         viewPlacemark.addTapListener(with: self)
     }
 }
@@ -81,18 +90,29 @@ extension ViewController: YMKMapInputListener {
     
     private func createPin(on point: YMKPoint) {
         let okButton = UIAlertAction(title: "Create", style: .default) { action in
-            self.addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude)
+            self.addPlacemarkOnMap(latitude: point.latitude, longitude: point.longitude, text: "My pin")
+            RealmManager.shared.savePoint(latitude: point.latitude, longitude: point.longitude, text: "My pin")
         }
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         AlertPresenter.present(
             from: self,
-            with: "Create new point?",
-            message: "\((point.latitude, point.longitude))",
+            with: "Create new pin?",
+            message: "The new pin will be created at coordinates: \((point.latitude, point.longitude))",
             actions: [okButton, cancelButton],
             style: .actionSheet
         )
     }
     
+}
+
+extension ViewController: AlertDelegate {
+    func presentFailureAlert(_ message: String) {
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        AlertPresenter.present(from: self,
+                               with: message,
+                               actions: [okAction],
+                               style: .alert)
+    }
 }
 
 extension ViewController: YMKMapObjectTapListener {
@@ -105,8 +125,19 @@ extension ViewController: YMKMapObjectTapListener {
         self.focusOnPlacemark(placemark)
         
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { action in
+            RealmManager.shared.points.forEach { savedPoint in
+                let approximateLatitude = (placemark.geometry.latitude - 0.00001)...(placemark.geometry.latitude + 0.00001)
+                let approximateLongitude = (placemark.geometry.longitude - 0.00001)...(placemark.geometry.longitude + 0.00001)
+                if approximateLatitude.contains(savedPoint.latitude) && approximateLongitude.contains(savedPoint.longitude) {
+                    print("POINT \(savedPoint.latitude), \(savedPoint.longitude) DELETE CONFIRM")
+                    let savedPointId = savedPoint._id
+                    RealmManager.shared.deletePoint(id: savedPointId)
+                    RealmManager.shared.readAllPointsFromDatabase()
+                }
+            }
             self.mapView.mapWindow.map.mapObjects.remove(with: placemark)
         }
+        
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         let editButton = UIAlertAction(title: "Edit", style: .default) { action in
             
@@ -126,6 +157,19 @@ extension ViewController: YMKMapObjectTapListener {
                     offsetFromIcon: true,
                     textOptional: false
                 ))
+                
+                RealmManager.shared.points.forEach { savedPoint in
+                    let approximateLatitude = (placemark.geometry.latitude - 0.00001)...(placemark.geometry.latitude + 0.00001)
+                    let approximateLongitude = (placemark.geometry.longitude - 0.00001)...(placemark.geometry.longitude + 0.00001)
+                    if approximateLatitude.contains(savedPoint.latitude) && approximateLongitude.contains(savedPoint.longitude) {
+                        print("POINT \(savedPoint.latitude), \(savedPoint.longitude) DELETE CONFIRM")
+                        let savedPointId = savedPoint._id
+                        RealmManager.shared.deletePoint(id: savedPointId)
+                        RealmManager.shared.readAllPointsFromDatabase()
+                    }
+                }
+                RealmManager.shared.savePoint(latitude: point.latitude, longitude: point.longitude, text: editAlert.textFields?[0].text ?? "My pin")
+                RealmManager.shared.readAllPointsFromDatabase()
             }
             
             editAlert.addAction(okAction)
@@ -142,10 +186,9 @@ extension ViewController: YMKMapObjectTapListener {
             style: .actionSheet
         )
         
-        
         return true
     }
-
+    
     private func focusOnPlacemark(_ placemark: YMKPlacemarkMapObject) {
         mapView.mapWindow.map.move(
             with: YMKCameraPosition(target: placemark.geometry, zoom: 18, azimuth: 0, tilt: 0),
@@ -153,7 +196,6 @@ extension ViewController: YMKMapObjectTapListener {
             cameraCallback: nil
         )
     }
-    
     
 }
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7A36091A2BE39CCC0090CE68 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3609192BE39CCC0090CE68 /* AlertPresenter.swift */; };
 		7A395F242BE5052200888D76 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A395F232BE5052200888D76 /* MapView.swift */; };
+		7A7A77A92BE6598C002EA523 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A77A82BE6598C002EA523 /* Point.swift */; };
+		7AA6F1322BE66761009739FF /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA6F1312BE66761009739FF /* RealmManager.swift */; };
 		7AFC8DCA2BE11D9E0068752E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */; };
 		7AFC8DCC2BE11D9E0068752E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */; };
 		7AFC8DCE2BE11D9E0068752E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFC8DCD2BE11D9E0068752E /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 		35444FDA8DCF3A957C0F1A30 /* Pods-TMSHomework-Lesson39.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMSHomework-Lesson39.debug.xcconfig"; path = "Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3609192BE39CCC0090CE68 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		7A395F232BE5052200888D76 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7A7A77A82BE6598C002EA523 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		7AA6F1312BE66761009739FF /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		7AFC8DC62BE11D9E0068752E /* TMSHomework-Lesson39.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMSHomework-Lesson39.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		7AA6F1332BE66852009739FF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				7A7A77A82BE6598C002EA523 /* Point.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		7AFC8DBD2BE11D9E0068752E = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,8 @@
 				7AFC8DC92BE11D9E0068752E /* AppDelegate.swift */,
 				7AFC8DCB2BE11D9E0068752E /* SceneDelegate.swift */,
 				7AFC8DCD2BE11D9E0068752E /* ViewController.swift */,
+				7AA6F1332BE66852009739FF /* Entities */,
+				7AA6F1312BE66761009739FF /* RealmManager.swift */,
 				7A395F232BE5052200888D76 /* MapView.swift */,
 				7A3609182BE39CBB0090CE68 /* Utils */,
 				7AFC8DCF2BE11D9F0068752E /* Main.storyboard */,
@@ -117,6 +131,7 @@
 				7AFC8DC32BE11D9E0068752E /* Frameworks */,
 				7AFC8DC42BE11D9E0068752E /* Resources */,
 				71C927892E6C29CA5B26B0B2 /* [CP] Copy Pods Resources */,
+				3E738EE19D7A32233E9C96D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +189,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3E738EE19D7A32233E9C96D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TMSHomework-Lesson39/Pods-TMSHomework-Lesson39-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		71C927892E6C29CA5B26B0B2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,7 +255,9 @@
 				7AFC8DCE2BE11D9E0068752E /* ViewController.swift in Sources */,
 				7AFC8DCA2BE11D9E0068752E /* AppDelegate.swift in Sources */,
 				7A395F242BE5052200888D76 /* MapView.swift in Sources */,
+				7A7A77A92BE6598C002EA523 /* Point.swift in Sources */,
 				7AFC8DCC2BE11D9E0068752E /* SceneDelegate.swift in Sources */,
+				7AA6F1322BE66761009739FF /* RealmManager.swift in Sources */,
 				7A36091A2BE39CCC0090CE68 /* AlertPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

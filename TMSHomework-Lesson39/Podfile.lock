@@ -1,16 +1,26 @@
 PODS:
+  - Realm (10.50.0):
+    - Realm/Headers (= 10.50.0)
+  - Realm/Headers (10.50.0)
+  - RealmSwift (10.50.0):
+    - Realm (= 10.50.0)
   - YandexMapsMobile (4.6.1-lite)
 
 DEPENDENCIES:
+  - RealmSwift (~> 10)
   - YandexMapsMobile (= 4.6.1-lite)
 
 SPEC REPOS:
   trunk:
+    - Realm
+    - RealmSwift
     - YandexMapsMobile
 
 SPEC CHECKSUMS:
+  Realm: a0a6a99e3dfa8959358a95c3c05845b5e5d6af30
+  RealmSwift: fa111fb98e092a4dff1d0785ad0c3483feda607a
   YandexMapsMobile: 7e20ef4db180b901c96f8107fade91d6349248a0
 
-PODFILE CHECKSUM: 6fc61ff8c5ed38d4668b999426c00bcd26babd3f
+PODFILE CHECKSUM: 18c4c652ae3356dc9a901db5f63fb0dfb0127fae
 
 COCOAPODS: 1.14.3

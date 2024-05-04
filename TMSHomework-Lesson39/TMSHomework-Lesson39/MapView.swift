@@ -21,8 +21,6 @@ class MapView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let vc = ViewController()
-    
     func setupMapView() {
         mapView = YMKMapView(frame: bounds, vulkanPreferred: MapView.isM1Simulator())
         
@@ -35,14 +33,11 @@ class MapView: UIView {
             ),
             animation: YMKAnimation(type: YMKAnimationType.smooth, duration: 5),
             cameraCallback: nil)
-        
-//        mapView?.mapWindow.map.addInputListener(with: self)
     }
     
     static func isM1Simulator() -> Bool {
         return (TARGET_IPHONE_SIMULATOR & TARGET_CPU_ARM64) != 0
     }
-    
     
 }
 
