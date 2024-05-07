@@ -126,10 +126,8 @@ extension ViewController: YMKMapObjectTapListener {
         
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { action in
             RealmManager.shared.points.forEach { savedPoint in
-                let approximateLatitude = (placemark.geometry.latitude - 0.00001)...(placemark.geometry.latitude + 0.00001)
-                let approximateLongitude = (placemark.geometry.longitude - 0.00001)...(placemark.geometry.longitude + 0.00001)
-                if approximateLatitude.contains(savedPoint.latitude) && approximateLongitude.contains(savedPoint.longitude) {
-                    print("POINT \(savedPoint.latitude), \(savedPoint.longitude) DELETE CONFIRM")
+                if savedPoint.latitude.isEqual(to: placemark.geometry.latitude) &&
+                    savedPoint.longitude.isEqual(to: placemark.geometry.longitude) {
                     let savedPointId = savedPoint._id
                     RealmManager.shared.deletePoint(id: savedPointId)
                     RealmManager.shared.readAllPointsFromDatabase()
@@ -159,10 +157,8 @@ extension ViewController: YMKMapObjectTapListener {
                 ))
                 
                 RealmManager.shared.points.forEach { savedPoint in
-                    let approximateLatitude = (placemark.geometry.latitude - 0.00001)...(placemark.geometry.latitude + 0.00001)
-                    let approximateLongitude = (placemark.geometry.longitude - 0.00001)...(placemark.geometry.longitude + 0.00001)
-                    if approximateLatitude.contains(savedPoint.latitude) && approximateLongitude.contains(savedPoint.longitude) {
-                        print("POINT \(savedPoint.latitude), \(savedPoint.longitude) DELETE CONFIRM")
+                    if savedPoint.latitude.isEqual(to: placemark.geometry.latitude) &&
+                        savedPoint.longitude.isEqual(to: placemark.geometry.longitude) {
                         let savedPointId = savedPoint._id
                         RealmManager.shared.deletePoint(id: savedPointId)
                         RealmManager.shared.readAllPointsFromDatabase()
