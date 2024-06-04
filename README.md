@@ -8,3 +8,25 @@
 
 #### Задания со * и  по желанию:   
 Можно использовать карты Apple, а так же любую другую библиотеку вроде yandex/google/2gis.
+
+## Локальный запуск проекта
+
+1. Клонировать репозиторий:
+    ```sh
+    git clone https://github.com/ozzyasha/TMSHomework-Lesson39.git
+    ```
+
+2. Выполнить следующую команду в директории проекта, чтобы установить зависимости CocoaPods:
+    ```sh
+    pod install
+    ```
+3. Для запуска понадобится API ключ, который можно получить по инструкции [в докуменации YandexMapKit](https://yandex.ru/dev/mapkit/doc/ru/ios/generated/getting_started#key)  
+Далее в классе `AppDelegate` небоходимо заменить строку "your-api-key" на полученный API ключ:
+    ```swift
+    YMKMapKit.setApiKey("your-api-key")
+    ```
+4. Собрать и запустить проект.
+
+
+
+

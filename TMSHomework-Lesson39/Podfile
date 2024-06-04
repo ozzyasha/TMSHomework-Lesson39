@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TMSHomework-Lesson39' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+	pod 'YandexMapsMobile', '4.6.1-lite'
+	pod 'RealmSwift', '~>10'
+
+  # Pods for TMSHomework-Lesson39
+
+end
